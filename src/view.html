@@ -1,0 +1,27 @@
+<div>
+  <div>
+    <form name="ghUserForm">
+      <div class="form-group">
+      <label>User Name</label>
+      <input class="form-control" name="ghName" type="text" ng-model="inputUserName" required>
+      </div>
+      <button class="btn btn-success" ng-disabled="!ghUserForm.ghName.$valid" ng-click="findUser(inputUserName)"> Search</button>
+    </form>
+
+    <div style="margin-top:10px;">
+      <div ng-if="userRepos === null && searchError"class="alert alert-danger" role="alert">Could not find user...</div>
+      <table ng-if="userRepos !== null" class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Repo Name</th>
+            <th>Create DTG</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="repo in userRepos">
+          <td><a ng-href="repo.url">{{repo.name}}</a></td>
+          <td>{{repo.created_at}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
